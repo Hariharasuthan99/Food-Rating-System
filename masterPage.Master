@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="masterPage.master.cs" Inherits="Food_Rating_System.masterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Food Delivery System</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-image: url('~/Background Images/websiteBG.jpg');">
+    <form id="form1"  runat="server">
+        <div  style="margin-left: auto; margin-right: auto; text-align: center;">
+            <asp:Label ID="Header" runat="server" Text="Food Rating System"></asp:Label><br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder><br />
+            <asp:Label ID="Footer" runat="server" Text="Copyright FRS 2019"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
