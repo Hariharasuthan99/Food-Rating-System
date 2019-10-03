@@ -20,7 +20,7 @@
     </asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator ID="RegexPass" runat="server" ErrorMessage="Minimum 8 characters for password" Display="None" ControlToValidate="tbPassword" ValidationExpression="\w{8,16}">
     </asp:RegularExpressionValidator><br />
-    <asp:Button ID="btnLogin" runat="server" Text="Login" Width="80px" />
-    <asp:Button ID="btnRegister" runat="server" Text="Register" Width="80px" />
+    <asp:Button ID="btnLogin" runat="server" Text="Login" Width="80px" OnClick="btnLogin_Click" />
+    <asp:Button ID="btnRegister" runat="server" Text="Register" Width="80px" OnClick="btnRegister_Click" />
     <asp:ValidationSummary ID="ValSum" runat="server" />
 </asp:Content>
