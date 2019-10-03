@@ -7,12 +7,13 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    Create New Restaurant<br />
+    <asp:Label runat="server" Text="Create New Restaurant" ForeColor="White"></asp:Label><br />
 
     <br />
-    <asp:Button ID="btnCreate" runat="server" Text="Create" /><br />
-    Display<br />
+    <asp:Button ID="btnCreate" runat="server" Text="Create" /><br /><br />
+       <asp:Label runat="server" Text="Display" ForeColor="White"></asp:Label><br />
+<br />
     <asp:DropDownList ID="ddlCriteria" runat="server"></asp:DropDownList>
     <asp:TextBox ID="tbCriteria" runat="server"></asp:TextBox>
-    <asp:Button ID="btnDispaly" runat="server" Text="Display" />
+    <asp:Button ID="btnDispaly" runat="server" Text="Display" /><br /><br />
 </asp:Content>

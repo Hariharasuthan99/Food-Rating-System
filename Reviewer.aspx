@@ -6,9 +6,9 @@
     <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
     <asp:Button ID="btnSearch" runat="server" Text="Search" />
     <br /><br />
-    Rating
+    <asp:Label runat="server" ForeColor="White" ID="rating" Text="Rating" /><br />
     <br />
     <asp:TextBox ID="tbReview" runat="server"></asp:TextBox>
     <asp:DropDownList ID="ddlReview" runat="server"></asp:DropDownList>
-    <asp:Button ID="btnReview" runat="server" Text="Review" />
+    <asp:Button ID="btnReview" runat="server" Text="Review" /><br /><br />
 </asp:Content>

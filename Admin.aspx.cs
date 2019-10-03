@@ -11,7 +11,12 @@ namespace Food_Rating_System
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                ddlCriteria.Items.Add("Cuisine");
+                ddlCriteria.Items.Add("Location");
+                ddlCriteria.Items.Add("Rating");
+            }
         }
     }
 }
