@@ -21,7 +21,7 @@ namespace Food_Rating_System
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-
+            int a;
         }
     }
 }

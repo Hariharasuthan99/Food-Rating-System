@@ -7,7 +7,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    Username
+    Email
     <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="ReqUser" runat="server" ErrorMessage="Enter Username" Display="Dynamic" ControlToValidate="tbUsername" Text="*" ForeColor="Red">
     </asp:RequiredFieldValidator>
