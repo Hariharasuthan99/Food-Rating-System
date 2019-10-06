@@ -22,13 +22,13 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.Label Email;
         
         /// <summary>
-        /// tbUsername control.
+        /// tbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUsername;
+        protected global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
         /// ReqUser control.
@@ -38,15 +38,6 @@ namespace Food_Rating_System {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqUser;
-        
-        /// <summary>
-        /// RegexUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexUser;
         
         /// <summary>
         /// Password control.
@@ -92,6 +83,15 @@ namespace Food_Rating_System {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
+        
+        /// <summary>
+        /// lblErrorText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorText;
         
         /// <summary>
         /// btnRegister control.

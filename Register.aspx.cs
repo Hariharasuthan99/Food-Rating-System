@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+ 
 namespace Food_Rating_System
 {
     public partial class Register : System.Web.UI.Page
@@ -21,7 +21,7 @@ namespace Food_Rating_System
             int row =0;
             if (Page.IsValid)
             {
-                string conStr = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=FoodBase;Integrated Security=True;Pooling=False";
+                string conStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 string cmdStr = "INSERT INTO Users values(@Name,@Email,@Password,@Admin)";
                 using (SqlConnection cnn = new SqlConnection(conStr))
                 {
@@ -36,11 +36,14 @@ namespace Food_Rating_System
                         {
                             cnn.Open();
                             row = cmd.ExecuteNonQuery();
-                            cnn.Close();
                         }
-                        catch(Exception)
+                        catch (Exception ex)
                         {
-                            lbStatus.Text = "Email already used";
+                            lbStatus.Text = ex.ToString();
+                        }
+                        finally
+                        {
+                            cnn.Close();
                         }
                     }
                 }
@@ -50,6 +53,7 @@ namespace Food_Rating_System
                 cpw.Text = "";
                 if (row == 1)
                     lbStatus.Text = "Success";
+
             }
         }
 
