@@ -5,7 +5,7 @@
     <asp:Table runat="server" HorizontalAlign="Center"> 
         <asp:TableRow>
             <asp:TableCell ColumnSpan="1" HorizontalAlign="Left">
-                Name
+                <asp:Label runat="server" Text="Name" />
             </asp:TableCell> 
             <asp:TableCell HorizontalAlign="Left">
                 <asp:TextBox ID="name" runat="server"></asp:TextBox>
@@ -21,7 +21,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell ColumnSpan="1" HorizontalAlign="Left">
-                Email
+                <asp:Label runat="server" Text="Email" />
             </asp:TableCell> 
             <asp:TableCell HorizontalAlign="Left">
                 <asp:TextBox ID="email" runat="server" TextMode="Email"></asp:TextBox>
@@ -33,7 +33,7 @@
         </asp:TableRow>
          <asp:TableRow>
             <asp:TableCell ColumnSpan="1" HorizontalAlign="Left">
-                Password
+                <asp:Label runat="server" Text="Password" />
             </asp:TableCell> 
             <asp:TableCell HorizontalAlign="Left">
                 <asp:TextBox ID="pw" runat="server" TextMode="Password"></asp:TextBox>
@@ -49,7 +49,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell ColumnSpan="1" HorizontalAlign="Left">
-                Confirm Password
+                <asp:Label runat="server" Text="Confirm Password" />
             </asp:TableCell> 
             <asp:TableCell HorizontalAlign="Left">
                 <asp:TextBox ID="cpw" runat="server" TextMode="Password"></asp:TextBox>

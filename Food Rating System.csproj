@@ -68,9 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
+    <Content Include="App_Themes\Dark\dark.css" />
+    <Content Include="App_Themes\Normal\normal.css" />
     <Content Include="Register.aspx" />
     <Content Include="Reviewer.aspx" />
     <Content Include="dbSchema.txt" />
+    <Content Include="searchResults.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
   </ItemGroup>
@@ -111,9 +114,18 @@
     <Compile Include="Reviewer.aspx.designer.cs">
       <DependentUpon>Reviewer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="searchResults.aspx.cs">
+      <DependentUpon>searchResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="searchResults.aspx.designer.cs">
+      <DependentUpon>searchResults.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="masterPage.Master" />
+    <Content Include="App_Themes\Dark\dark.skin" />
+    <Content Include="App_Themes\Normal\normal.skin" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

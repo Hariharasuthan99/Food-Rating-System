@@ -33,6 +33,7 @@ namespace Food_Rating_System
                         {
                             if (reader.Read())
                             {
+                                Session["Email"] = tbEmail.Text;
                                 if (reader["Admin"].ToString().Equals("True"))
                                 {
                                     Response.Redirect("Admin.aspx");
@@ -57,5 +58,6 @@ namespace Food_Rating_System
         {
             Response.Redirect("Register.aspx");
         }
+
     }
 }

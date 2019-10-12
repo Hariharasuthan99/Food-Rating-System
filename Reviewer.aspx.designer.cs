@@ -22,6 +22,15 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.DropDownList ddlSearch;
         
         /// <summary>
+        /// ReqCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqCat;
+        
+        /// <summary>
         /// tbSearch control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Food_Rating_System {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbSearch;
+        
+        /// <summary>
+        /// ReqTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqTerm;
         
         /// <summary>
         /// btnSearch control.
@@ -40,6 +58,15 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
+        /// lbPrev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrev;
+        
+        /// <summary>
         /// rating control.
         /// </summary>
         /// <remarks>
@@ -49,13 +76,31 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.Label rating;
         
         /// <summary>
-        /// tbReview control.
+        /// restNames control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbReview;
+        protected global::System.Web.UI.WebControls.SqlDataSource restNames;
+        
+        /// <summary>
+        /// ddlNames control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNames;
+        
+        /// <summary>
+        /// ReqName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqName;
         
         /// <summary>
         /// ddlReview control.
@@ -67,6 +112,24 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.DropDownList ddlReview;
         
         /// <summary>
+        /// ReqRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqRating;
+        
+        /// <summary>
+        /// tbReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbReview;
+        
+        /// <summary>
         /// btnReview control.
         /// </summary>
         /// <remarks>
@@ -74,5 +137,32 @@ namespace Food_Rating_System {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReview;
+        
+        /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogout;
+        
+        /// <summary>
+        /// lbStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbStatus;
+        
+        /// <summary>
+        /// ValSum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValSum;
     }
 }

@@ -16,13 +16,12 @@ CREATE TABLE [dbo].[Restaurants] (
 );
 
 CREATE TABLE [dbo].[Comments] (
-    [Id]             INT           NOT NULL,
     [Email]          VARCHAR (50)  NOT NULL,
     [RestaurantName] VARCHAR (50)  NOT NULL,
-    [Comment]        VARCHAR (150) NOT NULL,
-    [Rating]         INT           NOT NULL,
+    [Comment]        VARCHAR (150) NULL,
+    [Rating]         FLOAT           NOT NULL,
     [Approved]       BIT           NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
+    PRIMARY KEY CLUSTERED ([Email],[RestaurantName] ASC),
     FOREIGN KEY ([Email]) REFERENCES [dbo].[Users] ([Email]),
     FOREIGN KEY ([RestaurantName]) REFERENCES [dbo].[Restaurants] ([Name])
 );

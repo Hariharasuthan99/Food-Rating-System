@@ -10,60 +10,60 @@
 namespace Food_Rating_System {
     
     
-    public partial class masterPage {
+    public partial class searchResults {
         
         /// <summary>
-        /// head control.
+        /// resultsName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.SqlDataSource resultsName;
         
         /// <summary>
-        /// form1 control.
+        /// resultsLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.SqlDataSource resultsLocation;
         
         /// <summary>
-        /// Header control.
+        /// resultsCuisine control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Header;
+        protected global::System.Web.UI.WebControls.SqlDataSource resultsCuisine;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// resultsRating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.SqlDataSource resultsRating;
         
         /// <summary>
-        /// ddlTheme control.
+        /// grid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTheme;
+        protected global::System.Web.UI.WebControls.GridView grid;
         
         /// <summary>
-        /// Footer control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Footer;
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }
