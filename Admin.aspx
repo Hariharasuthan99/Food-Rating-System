@@ -50,18 +50,24 @@
     <asp:DropDownList ID="ddlCriteria" runat="server"></asp:DropDownList>
     <asp:TextBox ID="tbCriteria" runat="server"></asp:TextBox>
     <asp:Button ID="btnDisplay" runat="server" Text="Display" OnClick="btnDisplay_Click" /><br />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' SelectCommand="SELECT [Email],[Comment],[RestaurantName] FROM [Comments] WHERE ([Approved] = @Approved)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
+        SelectCommand="SELECT [Email],[Comment],[RestaurantName] FROM [Comments] WHERE ([Approved] = @Approved)" 
+         >
         <SelectParameters>
             <asp:Parameter DefaultValue="False" Name="Approved" Type="Boolean"></asp:Parameter>
         </SelectParameters>
+        <DeleteParameters>
+            <asp:ControlParameter ControlID="Label5" PropertyName="Text" Type="String" Name="Email" />
+            <asp:ControlParameter ControlID="Label6" Type="String" Name="RestaurantName" />
+        </DeleteParameters>
     </asp:SqlDataSource><br /><br />
-    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="false" HorizontalAlign="Center">
+    <asp:GridView DataKeyNames="Email"  ID="GridView1" runat="server" DataSourceID="SqlDataSource1" ClientIDMode="Static" 
+        AutoGenerateColumns="false" HorizontalAlign="Center">
         <Columns>
             <asp:TemplateField HeaderText="Email">
                 <ItemTemplate>
-                        <%# Eval("Email") %>
-                    <br />
-                    
+                    <asp:Label ID="Label5" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                    <br /> 
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Comment">
@@ -73,13 +79,14 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Restaurant">
                 <ItemTemplate>
-                        <%# Eval("RestaurantName") %>
+                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("RestaurantName") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CommandField ShowEditButton="true" EditText="Approve" UpdateText="Approve"  />
-            <asp:CommandField ShowDeleteButton="true" DeleteText="Reject" />
+            <asp:CommandField ShowDeleteButton="true" EditText="Reject" DeleteText="Reject"  />
 
         </Columns>
     </asp:GridView>
+    <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
     <br />
 </asp:Content>
