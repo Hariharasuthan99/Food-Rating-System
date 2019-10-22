@@ -12,6 +12,10 @@ namespace Food_Rating_System
         protected void Page_Load(object sender, EventArgs e)
         {
             grid.DataSourceID = "results" + Request.QueryString["category"].ToString();
+            if(!IsPostBack)
+            {
+                this.Master.FindControl("ddlTheme").Visible = false;
+            }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

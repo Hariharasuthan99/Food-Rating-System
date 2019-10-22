@@ -3,27 +3,31 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SqlDataSource ID="resultsName" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
-        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating,Visits FROM Restaurants,RTING WHERE RTING.RestaurantName=Restaurants.Name AND Restaurants.Name = @value">
+        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments WHERE Approved=@ap GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating,Visits FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE Restaurants.Name = @value">
         <SelectParameters>
             <asp:QueryStringParameter QueryStringField="value" Name="value" Type="String"></asp:QueryStringParameter>
+            <asp:Parameter Name="ap" Type="Boolean" DefaultValue="true"/>
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="resultsLocation" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
-        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating,Visits FROM Restaurants,RTING WHERE RTING.RestaurantName=Restaurants.Name AND Restaurants.Location = @value">
+        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments WHERE Approved=@ap GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating,Visits FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE Restaurants.Location = @value">
         <SelectParameters>
             <asp:QueryStringParameter QueryStringField="value" Name="value" Type="String"></asp:QueryStringParameter>
+            <asp:Parameter Name="ap" Type="Boolean" DefaultValue="true"/>
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="resultsCuisine" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
-        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating,Visits FROM Restaurants,RTING WHERE RTING.RestaurantName=Restaurants.Name AND Restaurants.Cuisine = @value">
+        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments WHERE Approved=@ap GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating,Visits FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE Restaurants.Cuisine = @value">
         <SelectParameters>
             <asp:QueryStringParameter QueryStringField="value" Name="value" Type="String"></asp:QueryStringParameter>
+            <asp:Parameter Name="ap" Type="Boolean" DefaultValue="true"/>
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="resultsRating" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
-        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating ,Visits FROM Restaurants,RTING WHERE RTING.RestaurantName=Restaurants.Name AND AVGR >=@value">
+        SelectCommand="WITH RTING AS (SELECT AVG(RATING) AS AVGR, COUNT(RATING) AS Visits,RestaurantName FROM Comments WHERE Approved=@ap GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating ,Visits FROM Restaurants,RTING WHERE RTING.RestaurantName=Restaurants.Name AND AVGR >=@value">
         <SelectParameters>
             <asp:QueryStringParameter QueryStringField="value" Name="value" Type="String"></asp:QueryStringParameter>
+            <asp:Parameter Name="ap" Type="Boolean" DefaultValue="true"/>
         </SelectParameters>
     </asp:SqlDataSource>
     <center>
@@ -39,5 +43,4 @@
     </asp:GridView><br />
     </center>
     <asp:Button ID="btnBack" runat="server" Text="Back" OnClick="btnBack_Click" /><br />
-    //resultsRating approved condition
 </asp:Content>

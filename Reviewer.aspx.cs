@@ -34,7 +34,7 @@ namespace Food_Rating_System
             }
             HttpCookie cookie = Request.Cookies["prevSearch"];
             if (cookie != null)
-                lbPrev.Text +=cookie["category"].ToString() + " and "  +cookie["value"].ToString();
+                lbPrev.Text =cookie["category"].ToString() + " and "  +cookie["value"].ToString();
         }
 
         protected void btnReview_Click(object sender, EventArgs e)

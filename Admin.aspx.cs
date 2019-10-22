@@ -40,9 +40,14 @@ namespace Food_Rating_System
                         }
                         catch (Exception)
                         {
+                            lblStatus.Text = "Failure";
                         }
                         finally
                         {
+                            lblStatus.Text = "Success";
+                            txtCuisine.Text = "";
+                            txtName.Text = "";
+                            txtLocation.Text = "";
                             conn.Close();
                         }
                     }
@@ -56,32 +61,10 @@ namespace Food_Rating_System
 
         }
 
-        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            GridViewRow emailRow = GridView1.Rows[0];
-            GridViewRow restaurantRow = GridView1.Rows[1];
-            string cmd = "delete from Comments where email='" + emailRow.Cells[0].Text + "'" + "and RestaurantName='" +
-                restaurantRow.Cells[1].Text + "'";
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            SqlCommand cmdd = new SqlCommand(cmd, connection);
-            try
-            {
-                connection.Open();
-                cmdd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Label4.Text = ex.Message;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {            
+                Session.Abandon();
+                Response.Redirect("Login.aspx");
         }
     }
 }

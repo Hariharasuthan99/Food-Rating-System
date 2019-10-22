@@ -45,23 +45,34 @@
     </asp:Table>
     <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click" /><br />
     <br />
+    <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label><br /><br />
     <asp:Label runat="server" Text="Display"></asp:Label><br />
     <br />
     <asp:DropDownList ID="ddlCriteria" runat="server"></asp:DropDownList>
     <asp:TextBox ID="tbCriteria" runat="server"></asp:TextBox>
     <asp:Button ID="btnDisplay" runat="server" Text="Display" OnClick="btnDisplay_Click" /><br />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
-        SelectCommand="SELECT [Email],[Comment],[RestaurantName] FROM [Comments] WHERE ([Approved] = @Approved)" 
-         >
-        <SelectParameters>
-            <asp:Parameter DefaultValue="False" Name="Approved" Type="Boolean"></asp:Parameter>
-        </SelectParameters>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
+        DeleteCommand="DELETE FROM [Comments] WHERE [Email] = @Email AND [RestaurantName] = @RestaurantName" 
+        InsertCommand="INSERT INTO [Comments] ([Email], [RestaurantName], [Comment], [Rating], [Approved]) VALUES (@Email, @RestaurantName, @Comment, @Rating, @Approved)" 
+        SelectCommand="SELECT * FROM [Comments]"
+        UpdateCommand="UPDATE [Comments] SET [Approved] = @Approved WHERE [Email] = @Email AND [RestaurantName] = @RestaurantName">
+
         <DeleteParameters>
-            <asp:ControlParameter ControlID="Label5" PropertyName="Text" Type="String" Name="Email" />
-            <asp:ControlParameter ControlID="Label6" Type="String" Name="RestaurantName" />
+            <asp:Parameter Name="Email" Type="String"></asp:Parameter>
+            <asp:Parameter Name="RestaurantName" Type="String"></asp:Parameter>
         </DeleteParameters>
-    </asp:SqlDataSource><br /><br />
-    <asp:GridView DataKeyNames="Email"  ID="GridView1" runat="server" DataSourceID="SqlDataSource1" ClientIDMode="Static" 
+        <InsertParameters>
+            <asp:Parameter Name="Email" Type="String"></asp:Parameter>
+            <asp:Parameter Name="RestaurantName" Type="String"></asp:Parameter>
+            <asp:Parameter Name="Comment" Type="String"></asp:Parameter>
+            <asp:Parameter Name="Rating" Type="Double"></asp:Parameter>
+            <asp:Parameter Name="Approved" Type="Boolean"></asp:Parameter>
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="Approved" Type="Boolean" DefaultValue="false"></asp:Parameter>
+        </UpdateParameters>
+    </asp:SqlDataSource>
+    <asp:GridView DataKeyNames="Email,RestaurantName"  ID="GridView1" runat="server" DataSourceID="SqlDataSource1" ClientIDMode="Static" 
         AutoGenerateColumns="false" HorizontalAlign="Center">
         <Columns>
             <asp:TemplateField HeaderText="Email">
@@ -82,11 +93,19 @@
                     <asp:Label ID="Label6" runat="server" Text='<%# Eval("RestaurantName") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Approved">
+                <ItemTemplate>
+                    <asp:Label ID="Label7" runat="server" Text='<%# Eval("Approved") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="tbApproved" runat="server" Text='<%# Bind("Approved") %>'></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
             <asp:CommandField ShowEditButton="true" EditText="Approve" UpdateText="Approve"  />
             <asp:CommandField ShowDeleteButton="true" EditText="Reject" DeleteText="Reject"  />
-
         </Columns>
     </asp:GridView>
     <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
     <br />
+    <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
 </asp:Content>
