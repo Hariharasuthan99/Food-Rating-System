@@ -54,8 +54,8 @@
     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
         DeleteCommand="DELETE FROM [Comments] WHERE [Email] = @Email AND [RestaurantName] = @RestaurantName" 
         InsertCommand="INSERT INTO [Comments] ([Email], [RestaurantName], [Comment], [Rating], [Approved]) VALUES (@Email, @RestaurantName, @Comment, @Rating, @Approved)" 
-        SelectCommand="SELECT * FROM [Comments]"
-        UpdateCommand="UPDATE [Comments] SET [Approved] = @Approved WHERE [Email] = @Email AND [RestaurantName] = @RestaurantName">
+        SelectCommand="SELECT * FROM [Comments] WHERE Approved= 0"
+        UpdateCommand="UPDATE [Comments] SET [Approved] = 1 WHERE [Email] = @Email AND [RestaurantName] = @RestaurantName">
 
         <DeleteParameters>
             <asp:Parameter Name="Email" Type="String"></asp:Parameter>
@@ -68,9 +68,6 @@
             <asp:Parameter Name="Rating" Type="Double"></asp:Parameter>
             <asp:Parameter Name="Approved" Type="Boolean"></asp:Parameter>
         </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="Approved" Type="Boolean" DefaultValue="false"></asp:Parameter>
-        </UpdateParameters>
     </asp:SqlDataSource>
     <asp:GridView DataKeyNames="Email,RestaurantName"  ID="GridView1" runat="server" DataSourceID="SqlDataSource1" ClientIDMode="Static" 
         AutoGenerateColumns="false" HorizontalAlign="Center">
@@ -85,7 +82,6 @@
                 <ItemTemplate>
                         <%# Eval("Comment") %>
                     <br />
-                    
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Restaurant">
@@ -97,15 +93,21 @@
                 <ItemTemplate>
                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("Approved") %>'></asp:Label>
                 </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:TextBox ID="tbApproved" runat="server" Text='<%# Bind("Approved") %>'></asp:TextBox>
-                </EditItemTemplate>
+
             </asp:TemplateField>
             <asp:CommandField ShowEditButton="true" EditText="Approve" UpdateText="Approve"  />
             <asp:CommandField ShowDeleteButton="true" EditText="Reject" DeleteText="Reject"  />
         </Columns>
-    </asp:GridView>
+    </asp:GridView><br />
+
+    <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" ></asp:GridView><br />
     <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-    <br />
+    <br /><br /><br />
+
+    Location:<asp:DropDownList ID="ddlLocation" runat="server" HorizontalAlign="Center"></asp:DropDownList>
+    Rating:<asp:DropDownList ID="ddlRating" runat="server" HorizontalAlign="Center"></asp:DropDownList>
+    Cuisine:<asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center"></asp:DropDownList><br /><br/>
+    <asp:Button ID="btnFind" runat="server" Text="Find Restaurants" OnClick="btnFind_Click" />
+    <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center"></asp:GridView>
     <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
 </asp:Content>

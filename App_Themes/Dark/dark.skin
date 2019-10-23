@@ -17,4 +17,5 @@ Default skin template. The following skins are provided as examples only.
 <asp:Button runat="server" BackColor="Black" ForeColor="White" Font-Names="Verdana" Font-Bold="true"/>
 <asp:DropDownList runat="server" BackColor="Black" ForeColor="White" Font-Names="Verdana" Font-Bold="true"/>
 <asp:TextBox runat="server" BackColor="Black" ForeColor="White" Font-Names="Verdana" Font-Bold="true"/>
+<asp:GridView runat="server" ForeColor="White" BackColor="Black" Font-Names="Verdana" Font-Bold="true"/>
 <asp:ValidationSummary runat="server" ForeColor="White" Font-Names="Verdana" Font-Bold="true"/>
