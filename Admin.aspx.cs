@@ -142,21 +142,25 @@ namespace Food_Rating_System
                     if (item.Text.Equals("Cuisine"))
                     {
                         cmdStr2 += ",Restaurants.Cuisine";
-                        cmdStr1 += "and Restaurants.Cuisine='" + ddlCuisine.SelectedValue + "'";
+                        if (cmdStr1 != "")
+                            cmdStr1 += " and ";
+                        cmdStr1 += "Restaurants.Cuisine='" + ddlCuisine.SelectedValue + "'";
                     }
                     if (item.Text.Equals("Rating"))
                     {
                         ratSelected = true;
+                        if (cmdStr1 != "")
+                            cmdStr1 += " and ";
                     }
                 }
             }
-            if (cmdStr1.StartsWith(" and"))
-                cmdStr1 = cmdStr1.Substring(5, cmdStr1.Length - 5);
+            //if (cmdStr1.StartsWith(" and"))
+            //    cmdStr1 = cmdStr1.Substring(5, cmdStr1.Length - 5);
 
             string cmdStr = "WITH RTING AS (SELECT AVG(RATING) AS AVGR,RestaurantName FROM Comments WHERE Approved=1 GROUP BY RestaurantName) SELECT Name,Cuisine,Location,AVGR as Rating FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE " + cmdStr1;
             if (ratSelected)
-                cmdStr = cmdStr + " and RTING.AVGR>=" + ddlRating.SelectedValue;
-            Label4.Text = cmdStr;
+                cmdStr = cmdStr + " RTING.AVGR>=" + ddlRating.SelectedValue;
+            //Label4.Text = cmdStr;
             executeDb(GridView3, cmdStr);
 
         }
