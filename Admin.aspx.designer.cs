@@ -130,6 +130,15 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
+        /// redLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label redLabel;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,15 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.CheckBoxList cbl;
         
         /// <summary>
+        /// locLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label locLabel;
+        
+        /// <summary>
         /// ddlLocation control.
         /// </summary>
         /// <remarks>
@@ -229,6 +247,15 @@ namespace Food_Rating_System {
         protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
         
         /// <summary>
+        /// ratingLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ratingLabel;
+        
+        /// <summary>
         /// ddlRating control.
         /// </summary>
         /// <remarks>
@@ -236,6 +263,15 @@ namespace Food_Rating_System {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRating;
+        
+        /// <summary>
+        /// cuisineLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label cuisineLabel;
         
         /// <summary>
         /// ddlCuisine control.

@@ -74,6 +74,7 @@
             <asp:Parameter Name="Approved" Type="Boolean"></asp:Parameter>
         </InsertParameters>
     </asp:SqlDataSource>
+    <asp:Label ID="redLabel" runat="server" Text="Comments to be approved" ForeColor="Red" EnableTheming="false"></asp:Label>
     <asp:GridView DataKeyNames="Email,RestaurantName"  ID="GridView1" runat="server" DataSourceID="SqlDataSource1" ClientIDMode="Static" 
         AutoGenerateColumns="false" HorizontalAlign="Center" EmptyDataText="No comments left to be approved">
         <Columns>
@@ -123,13 +124,13 @@
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow HorizontalAlign="Center">
             <asp:TableCell>
-            <asp:CheckBoxList ID="cbl" runat="server" HorizontalAlign="Center"></asp:CheckBoxList>
+                <asp:CheckBoxList ID="cbl" runat="server" HorizontalAlign="Center" AutoPostBack="true" OnSelectedIndexChanged="cbl_SelectedIndexChanged"></asp:CheckBoxList>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    Location:<asp:DropDownList ID="ddlLocation" runat="server" HorizontalAlign="Center" DataSourceID="restLocation" DataTextField="Location"></asp:DropDownList>
-    Rating:<asp:DropDownList ID="ddlRating" runat="server" HorizontalAlign="Center"></asp:DropDownList>
-    Cuisine:<asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center" DataSourceID="restCuisine" DataTextField="Cuisine"></asp:DropDownList><br /><br/>
+    <asp:Label ID="locLabel" runat="server" Text="Location:"></asp:Label><asp:DropDownList ID="ddlLocation" runat="server" HorizontalAlign="Center" DataSourceID="restLocation" DataTextField="Location"></asp:DropDownList>
+    <asp:Label ID="ratingLabel" runat="server" Text="Rating:"></asp:Label><asp:DropDownList ID="ddlRating" runat="server" HorizontalAlign="Center"></asp:DropDownList>
+    <asp:Label ID="cuisineLabel" runat="server" Text="Cuisine:"></asp:Label><asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center" DataSourceID="restCuisine" DataTextField="Cuisine"></asp:DropDownList><br /><br/>
     <asp:Button ID="btnFind" runat="server" Text="Find Restaurants" OnClick="btnFind_Click" /><br /><br />
     <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria"></asp:GridView><br />
     <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /><br />

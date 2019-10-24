@@ -16,6 +16,14 @@ namespace Food_Rating_System
         {
             if (!IsPostBack)
             {
+                ddlCuisine.Visible = false;
+                ddlRating.Visible = false;
+                ddlLocation.Visible = false;
+
+                locLabel.Visible = false;
+                ratingLabel.Visible = false;
+                cuisineLabel.Visible = false;
+
                 ddlCriteria.Items.Add("Cuisine");
                 ddlCriteria.Items.Add("Location");
                 ddlCriteria.Items.Add("Rating");
@@ -23,19 +31,6 @@ namespace Food_Rating_System
                 ddlTheme.Items.Add("Choose Theme");
                 ddlTheme.Items.Add("Normal");
                 ddlTheme.Items.Add("Dark");
-
-                /*ddlCuisine.Items.Add("Select");
-                ddlCuisine.Items.Add("Mexican");
-                ddlCuisine.Items.Add("Indian");
-                ddlCuisine.Items.Add("Continental");
-                ddlCuisine.Items.Add("Japanese");
-                ddlCuisine.Items.Add("Thai");
-
-                ddlLocation.Items.Add("Select");
-                ddlLocation.Items.Add("Bengaluru");
-                ddlLocation.Items.Add("Chennai");
-                ddlLocation.Items.Add("Kolkata");
-                ddlLocation.Items.Add("Mumbai");*/
 
                 cbl.Items.Add("Location");
                 cbl.Items.Add("Cuisine");
@@ -45,6 +40,7 @@ namespace Food_Rating_System
                 for (int i = 1; i < 6; i++)
                     ddlRating.Items.Add(i.ToString());
             }
+
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
@@ -93,7 +89,6 @@ namespace Food_Rating_System
             {
                 conn.Open();
                 sqlDataAdapter.Fill(ds);
-                //Label4.Text+= ds.Rows.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -132,34 +127,38 @@ namespace Food_Rating_System
 
         protected void btnFind_Click(object sender, EventArgs e)
         {
-            //cbl.Items.FindByText("Location").
-            /*string cmdStr1 = "";
-            string cmdStr2 = "Name";
-            if(!ddlCuisine.SelectedValue.Equals("Select"))
+            bool ratSelected = false;
+            string cmdStr1 = "";
+            string cmdStr2 = "Restaurants.Name";
+            foreach (ListItem item in cbl.Items)
             {
-                cmdStr2 += ",Cuisine";
-                cmdStr1 += "Restaurants.Cuisine='" + ddlCuisine.SelectedValue+"'";
+                if (item.Selected)
+                {
+                    if (item.Text.Equals("Location"))
+                    {
+                        cmdStr2 += ",Restaurants.Location";
+                        cmdStr1 += "Restaurants.Location='" + ddlLocation.SelectedValue + "'";
+                    }
+                    if (item.Text.Equals("Cuisine"))
+                    {
+                        cmdStr2 += ",Restaurants.Cuisine";
+                        cmdStr1 += "and Restaurants.Cuisine='" + ddlCuisine.SelectedValue + "'";
+                    }
+                    if (item.Text.Equals("Rating"))
+                    {
+                        ratSelected = true;
+                    }
+                }
             }
-            if (!ddlLocation.SelectedValue.Equals("Select"))
-            {
-                cmdStr2 += ",Location";
-                cmdStr1 += " and Restaurants.Location='" + ddlLocation.SelectedValue+"'";
-            }
-            if (!ddlRating.SelectedValue.Equals("Select"))
-            {
-                cmdStr2 += ",AVGR as Rating";
-                cmdStr1 += " and AVGR>="+ddlRating.SelectedValue;
-            }
-            if (cmdStr2.Substring(0, 1).Equals(","))
-                cmdStr2 = cmdStr2.Substring(1, cmdStr2.Length-1);
-            
-            //if (cmdStr1.StartsWith(" and"))
-            //    cmdStr1 = cmdStr1.Substring(5, cmdStr1.Length-5);
-            string cmdStr = "select " + cmdStr2 + " from Comments,Restaurants where Approved=1 group by Comments.RestaurantName," + cmdStr2 + " having Comments.RestaurantName=Restaurants.Name " + cmdStr1;
-            */
-            string cmdStr = "WITH RTING AS (SELECT AVG(RATING) AS AVGR,RestaurantName FROM Comments WHERE Approved=1 GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE Restaurants.Location = @value";
+            if (cmdStr1.StartsWith(" and"))
+                cmdStr1 = cmdStr1.Substring(5, cmdStr1.Length - 5);
+
+            string cmdStr = "WITH RTING AS (SELECT AVG(RATING) AS AVGR,RestaurantName FROM Comments WHERE Approved=1 GROUP BY RestaurantName) SELECT Name,Cuisine,Location,AVGR as Rating FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE " + cmdStr1;
+            if (ratSelected)
+                cmdStr = cmdStr + " and RTING.AVGR>=" + ddlRating.SelectedValue;
+            Label4.Text = cmdStr;
             executeDb(GridView3, cmdStr);
-          
+
         }
 
         protected void ddlTheme_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,5 +178,55 @@ namespace Food_Rating_System
                 this.Theme = Request.QueryString["theme"].ToString();
             }
         }
+        protected void cbl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (ListItem item in cbl.Items)
+            {
+                if (item.Selected)
+                {
+                    if (item.Text.Equals("Location"))
+                    {
+                        ddlLocation.Visible = true;
+                        locLabel.Visible = true;
+
+                    }
+                    if (item.Text.Equals("Cuisine"))
+                    {
+                        ddlCuisine.Visible = true;
+                        cuisineLabel.Visible = true;
+                    }
+                    if (item.Text.Equals("Rating"))
+                    {
+                        ddlRating.Visible = true;
+                        ratingLabel.Visible = true;
+                    }
+                }
+            }
+            foreach (ListItem item in cbl.Items)
+            {
+                if (!item.Selected)
+                {
+                    if (item.Text.Equals("Location"))
+                    {
+                        ddlLocation.Visible = false;
+                        locLabel.Visible = false;
+
+                    }
+                    if (item.Text.Equals("Cuisine"))
+                    {
+                        ddlCuisine.Visible = false;
+                        cuisineLabel.Visible = false;
+
+                    }
+                    if (item.Text.Equals("Rating"))
+                    {
+                        ddlRating.Visible = false;
+                        ratingLabel.Visible = false;
+
+                    }
+                }
+            }
+        }
+
     }
 }
