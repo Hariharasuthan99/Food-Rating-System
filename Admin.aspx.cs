@@ -20,7 +20,7 @@ namespace Food_Rating_System
                 ddlCriteria.Items.Add("Location");
                 ddlCriteria.Items.Add("Rating");
 
-                ddlCuisine.Items.Add("Select");
+                /*ddlCuisine.Items.Add("Select");
                 ddlCuisine.Items.Add("Mexican");
                 ddlCuisine.Items.Add("Indian");
                 ddlCuisine.Items.Add("Continental");
@@ -31,7 +31,11 @@ namespace Food_Rating_System
                 ddlLocation.Items.Add("Bengaluru");
                 ddlLocation.Items.Add("Chennai");
                 ddlLocation.Items.Add("Kolkata");
-                ddlLocation.Items.Add("Mumbai");
+                ddlLocation.Items.Add("Mumbai");*/
+
+                cbl.Items.Add("Location");
+                cbl.Items.Add("Cuisine");
+                cbl.Items.Add("Rating");
 
                 ddlRating.Items.Add("Select");
                 for (int i = 1; i < 6; i++)
@@ -101,7 +105,7 @@ namespace Food_Rating_System
         }
         protected void btnDisplay_Click(object sender, EventArgs e)
         {
-
+            GridView2.DataSource = "";
             string checkCmd = ddlCriteria.SelectedValue;
             //Label4.Text = checkCmd;
 
@@ -109,7 +113,7 @@ namespace Food_Rating_System
             if (!checkCmd.Equals("Rating"))
                 cmdStr = "SELECT * FROM Restaurants WHERE " + checkCmd + " = '" + tbCriteria.Text + "'";
             else
-                cmdStr = "SELECT Restaurants.Name,Restaurants.Location,Restaurants.Cuisine,Comments.Rating FROM Comments,Restaurants GROUP BY Rating,Comments.RestaurantName,Restaurants.Name,Restaurants.Location,Restaurants.Cuisine HAVING Comments.RestaurantName=Restaurants.Name AND AVG(Rating)>=" + tbCriteria.Text;
+                cmdStr = "WITH RTING AS(SELECT AVG(RATING) AS AVGR, RestaurantName FROM Comments WHERE Approved = 1 GROUP BY RestaurantName) SELECT Name, Location, Cuisine, AVGR as Rating FROM Restaurants,RTING WHERE RTING.RestaurantName = Restaurants.Name AND AVGR >=" + tbCriteria.Text;
             // Label4.Text += cmdStr;
 
             executeDb(GridView2, cmdStr);
@@ -124,29 +128,32 @@ namespace Food_Rating_System
 
         protected void btnFind_Click(object sender, EventArgs e)
         {
-            string cmdStr1 = "";
-            string cmdStr2 = "Restaurants.Name";
+            //cbl.Items.FindByText("Location").
+            /*string cmdStr1 = "";
+            string cmdStr2 = "Name";
             if(!ddlCuisine.SelectedValue.Equals("Select"))
             {
-                cmdStr2 += ",Restaurants.Cuisine";
+                cmdStr2 += ",Cuisine";
                 cmdStr1 += "Restaurants.Cuisine='" + ddlCuisine.SelectedValue+"'";
             }
             if (!ddlLocation.SelectedValue.Equals("Select"))
             {
-                cmdStr2 += ",Restaurants.Location";
+                cmdStr2 += ",Location";
                 cmdStr1 += " and Restaurants.Location='" + ddlLocation.SelectedValue+"'";
             }
             if (!ddlRating.SelectedValue.Equals("Select"))
             {
-                cmdStr2 += ",Comments.Rating";
-                cmdStr1 += " and Avg(Rating)>="+ddlRating.SelectedValue;
+                cmdStr2 += ",AVGR as Rating";
+                cmdStr1 += " and AVGR>="+ddlRating.SelectedValue;
             }
             if (cmdStr2.Substring(0, 1).Equals(","))
                 cmdStr2 = cmdStr2.Substring(1, cmdStr2.Length-1);
             
-            if (cmdStr1.StartsWith(" and"))
-                cmdStr1 = cmdStr1.Substring(5, cmdStr1.Length-5);
-            string cmdStr = "select " + cmdStr2 + " from Comments,Restaurants group by Comments.RestaurantName," + cmdStr2 + " having Comments.RestaurantName=Restaurants.Name and " + cmdStr1;
+            //if (cmdStr1.StartsWith(" and"))
+            //    cmdStr1 = cmdStr1.Substring(5, cmdStr1.Length-5);
+            string cmdStr = "select " + cmdStr2 + " from Comments,Restaurants where Approved=1 group by Comments.RestaurantName," + cmdStr2 + " having Comments.RestaurantName=Restaurants.Name " + cmdStr1;
+            */
+            string cmdStr = "WITH RTING AS (SELECT AVG(RATING) AS AVGR,RestaurantName FROM Comments WHERE Approved=1 GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE Restaurants.Location = @value";
             executeDb(GridView3, cmdStr);
           
         }

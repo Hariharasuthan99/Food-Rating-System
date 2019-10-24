@@ -18,6 +18,9 @@
             <asp:TableCell>
                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox><br />
             </asp:TableCell>
+            <asp:TableCell>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter Restaurant Name" Text="*" ForeColor="Red" Display="None" ControlToValidate="txtName" ValidationGroup="Create"></asp:RequiredFieldValidator>
+            </asp:TableCell>
 
         </asp:TableRow>
         <asp:TableRow runat="server"  HorizontalAlign="Left">
@@ -26,6 +29,9 @@
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="txtLocation" runat="server"></asp:TextBox>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter Restaurant Location" Text="*" ForeColor="Red" Display="None" ControlToValidate="txtLocation" ValidationGroup="Create"></asp:RequiredFieldValidator>
                 <br />
             </asp:TableCell>
         </asp:TableRow>
@@ -38,19 +44,18 @@
             <asp:TableCell>
 
                 <asp:TextBox ID="txtCuisine" runat="server"></asp:TextBox>
+                </asp:TableCell>
+            <asp:TableCell>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter Restaurant Cuisine" Text="*" ForeColor="Red" Display="None" ControlToValidate="txtCuisine" ValidationGroup="Create"></asp:RequiredFieldValidator>
                 <br />
             </asp:TableCell>
 
         </asp:TableRow>
     </asp:Table>
-    <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click" /><br />
+    <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click" ValidationGroup="Create" /><br />
     <br />
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server"  ValidationGroup="Create"/>
     <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label><br /><br />
-    <asp:Label runat="server" Text="Display"></asp:Label><br />
-    <br />
-    <asp:DropDownList ID="ddlCriteria" runat="server"></asp:DropDownList>
-    <asp:TextBox ID="tbCriteria" runat="server"></asp:TextBox>
-    <asp:Button ID="btnDisplay" runat="server" Text="Display" OnClick="btnDisplay_Click" /><br />
     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
         DeleteCommand="DELETE FROM [Comments] WHERE [Email] = @Email AND [RestaurantName] = @RestaurantName" 
         InsertCommand="INSERT INTO [Comments] ([Email], [RestaurantName], [Comment], [Rating], [Approved]) VALUES (@Email, @RestaurantName, @Comment, @Rating, @Approved)" 
@@ -70,7 +75,7 @@
         </InsertParameters>
     </asp:SqlDataSource>
     <asp:GridView DataKeyNames="Email,RestaurantName"  ID="GridView1" runat="server" DataSourceID="SqlDataSource1" ClientIDMode="Static" 
-        AutoGenerateColumns="false" HorizontalAlign="Center">
+        AutoGenerateColumns="false" HorizontalAlign="Center" EmptyDataText="No comments left to be approved">
         <Columns>
             <asp:TemplateField HeaderText="Email">
                 <ItemTemplate>
@@ -99,15 +104,27 @@
             <asp:CommandField ShowDeleteButton="true" EditText="Reject" DeleteText="Reject"  />
         </Columns>
     </asp:GridView><br />
-
-    <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" ></asp:GridView><br />
-    <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-    <br /><br /><br />
-
-    Location:<asp:DropDownList ID="ddlLocation" runat="server" HorizontalAlign="Center"></asp:DropDownList>
+    <asp:Label runat="server" Text="Display"></asp:Label><br />
+    <br />
+    <asp:DropDownList ID="ddlCriteria" runat="server"></asp:DropDownList>
+    <asp:TextBox ID="tbCriteria" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="tbCriteria" Display="Dynamic" ValidationGroup="Search"></asp:RequiredFieldValidator>
+    <asp:Button ID="btnDisplay" runat="server" Text="Display" OnClick="btnDisplay_Click" ValidationGroup="Search" /><br /><br />
+    <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria" ></asp:GridView><br />
+    <br />
+    <asp:Label ID="Label4" runat="server"></asp:Label><br />
+    <asp:Label runat="server" Text="Report"></asp:Label><br /><br />
+    <asp:SqlDataSource ID="restLocation" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>'
+        SelectCommand="SELECT DISTINCT [Location] FROM [Restaurants]">
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="restCuisine" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>'
+        SelectCommand="SELECT DISTINCT [Cuisine] FROM [Restaurants]">
+    </asp:SqlDataSource>
+    <asp:CheckBoxList ID="cbl" runat="server" HorizontalAlign="Center"></asp:CheckBoxList>
+    Location:<asp:DropDownList ID="ddlLocation" runat="server" HorizontalAlign="Center" DataSourceID="restLocation" DataTextField="Location"></asp:DropDownList>
     Rating:<asp:DropDownList ID="ddlRating" runat="server" HorizontalAlign="Center"></asp:DropDownList>
-    Cuisine:<asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center"></asp:DropDownList><br /><br/>
-    <asp:Button ID="btnFind" runat="server" Text="Find Restaurants" OnClick="btnFind_Click" />
-    <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center"></asp:GridView>
-    <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
+    Cuisine:<asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center" DataSourceID="restCuisine" DataTextField="Cuisine"></asp:DropDownList><br /><br/>
+    <asp:Button ID="btnFind" runat="server" Text="Find Restaurants" OnClick="btnFind_Click" /><br /><br />
+    <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria"></asp:GridView><br />
+    <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /><br />
 </asp:Content>
