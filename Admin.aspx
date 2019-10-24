@@ -120,7 +120,13 @@
     <asp:SqlDataSource ID="restCuisine" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>'
         SelectCommand="SELECT DISTINCT [Cuisine] FROM [Restaurants]">
     </asp:SqlDataSource>
-    <asp:CheckBoxList ID="cbl" runat="server" HorizontalAlign="Center"></asp:CheckBoxList>
+    <asp:Table runat="server" HorizontalAlign="Center">
+        <asp:TableRow HorizontalAlign="Center">
+            <asp:TableCell>
+            <asp:CheckBoxList ID="cbl" runat="server" HorizontalAlign="Center"></asp:CheckBoxList>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     Location:<asp:DropDownList ID="ddlLocation" runat="server" HorizontalAlign="Center" DataSourceID="restLocation" DataTextField="Location"></asp:DropDownList>
     Rating:<asp:DropDownList ID="ddlRating" runat="server" HorizontalAlign="Center"></asp:DropDownList>
     Cuisine:<asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center" DataSourceID="restCuisine" DataTextField="Cuisine"></asp:DropDownList><br /><br/>
