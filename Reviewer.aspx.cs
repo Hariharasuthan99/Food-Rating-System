@@ -15,6 +15,9 @@ namespace Food_Rating_System
         {
             if (!IsPostBack)
             {
+                ddlTheme.Items.Add("Choose Theme");
+                ddlTheme.Items.Add("Normal");
+                ddlTheme.Items.Add("Dark");
                 List<string> category = new List<string>();
                 category.Add("Name");
                 category.Add("Location");
@@ -29,7 +32,7 @@ namespace Food_Rating_System
                 rating.Add(5);
                 ddlReview.DataSource = rating;
                 this.DataBind();
-                this.Master.FindControl("ddlTheme").Visible = false;
+                //this.Master.FindControl("ddlTheme").Visible = false;
                 //Changing theme creates a new session
             }
             HttpCookie cookie = Request.Cookies["prevSearch"];
@@ -99,6 +102,24 @@ namespace Food_Rating_System
         {
             Session.Abandon();
             Response.Redirect("Login.aspx");
+        }
+
+        protected void ddlTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Theme"] = ddlTheme.SelectedItem.Text.ToString();
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Theme"] != null)
+            {
+                this.Theme = Session["Theme"].ToString();
+            }
+            else if (Request.QueryString["theme"] != null && Request.QueryString["theme"].ToString() != "Choose Theme")
+            {
+                this.Theme = Request.QueryString["theme"].ToString();
+            }
         }
     }
 }

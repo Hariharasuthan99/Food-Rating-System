@@ -20,6 +20,10 @@ namespace Food_Rating_System
                 ddlCriteria.Items.Add("Location");
                 ddlCriteria.Items.Add("Rating");
 
+                ddlTheme.Items.Add("Choose Theme");
+                ddlTheme.Items.Add("Normal");
+                ddlTheme.Items.Add("Dark");
+
                 /*ddlCuisine.Items.Add("Select");
                 ddlCuisine.Items.Add("Mexican");
                 ddlCuisine.Items.Add("Indian");
@@ -156,6 +160,24 @@ namespace Food_Rating_System
             string cmdStr = "WITH RTING AS (SELECT AVG(RATING) AS AVGR,RestaurantName FROM Comments WHERE Approved=1 GROUP BY RestaurantName) SELECT Name,Location,Cuisine,AVGR as Rating FROM Restaurants LEFT OUTER JOIN RTING ON RTING.RestaurantName=Restaurants.Name WHERE Restaurants.Location = @value";
             executeDb(GridView3, cmdStr);
           
+        }
+
+        protected void ddlTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Theme"] = ddlTheme.SelectedItem.Text.ToString();
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Theme"] != null)
+            {
+                this.Theme = Session["Theme"].ToString();
+            }
+            else if (Request.QueryString["theme"] != null && Request.QueryString["theme"].ToString() != "Choose Theme")
+            {
+                this.Theme = Request.QueryString["theme"].ToString();
+            }
         }
     }
 }

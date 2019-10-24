@@ -40,7 +40,8 @@
     <br />
     <asp:Label runat="server" Text="" ID="lblErrorText" /><br />
     <asp:Label runat="server" Text="Don't have an account?"  /><br />
-    <asp:Button ID="btnRegister" runat="server" Text="Register" Width="80px" OnClick="btnRegister_Click" CausesValidation="false" />
+    <asp:Button ID="btnRegister" runat="server" Text="Register" Width="80px" OnClick="btnRegister_Click" CausesValidation="false" /><br />
+    <asp:DropDownList ID="ddlTheme" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTheme_SelectedIndexChanged"></asp:DropDownList><br />
     <asp:ValidationSummary ID="ValSum" runat="server" /><br /><br />
 
 </asp:Content>

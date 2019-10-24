@@ -133,4 +133,5 @@
     <asp:Button ID="btnFind" runat="server" Text="Find Restaurants" OnClick="btnFind_Click" /><br /><br />
     <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria"></asp:GridView><br />
     <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /><br />
+     <asp:DropDownList ID="ddlTheme" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTheme_SelectedIndexChanged"></asp:DropDownList><br />
 </asp:Content>

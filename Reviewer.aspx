@@ -16,7 +16,8 @@
     </asp:RequiredFieldValidator>
     <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" ValidationGroup="Search" />
     <br />
-    <asp:Label ID="lbPrev" runat="server" Text="Last Searched "></asp:Label>
+    <asp:Label runat="server" Text="Last Searched: "></asp:Label>
+    <asp:Label ID="lbPrev" runat="server" Text=""></asp:Label>
     <br /><br />
     <asp:Label runat="server" ID="rating" Text="Reviewing" /><br />
     <asp:SqlDataSource ID="restNames" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>'
@@ -31,6 +32,7 @@
     <asp:TextBox ID="tbReview" runat="server" CssClass="auto-style1" Height="124px" Width="195px"></asp:TextBox><br /><br />
     <asp:Button ID="btnReview" runat="server" Text="Review" OnClick="btnReview_Click" ValidationGroup="Review" /><br /><br />
     <asp:Button ID="btnLogout" runat="server" Text="Logout" CausesValidation="false" OnClick="btnLogout_Click" /><br />
-    <asp:Label ID="lbStatus" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lbStatus" runat="server" Text=""></asp:Label><br />
+    <asp:DropDownList ID="ddlTheme" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTheme_SelectedIndexChanged"></asp:DropDownList><br />
     <asp:ValidationSummary ID="ValSum" runat="server" />
 </asp:Content>

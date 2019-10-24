@@ -61,5 +61,17 @@ namespace Food_Rating_System
         {
             Response.Redirect("Login.aspx");
         }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Theme"] != null)
+            {
+                this.Theme = Session["Theme"].ToString();
+            }
+            else if(Request.QueryString["theme"]!=null && Request.QueryString["theme"].ToString()!="Choose Theme")
+            {
+                this.Theme = Request.QueryString["theme"].ToString();
+            }
+        }
     }
 }

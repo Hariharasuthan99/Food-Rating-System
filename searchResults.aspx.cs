@@ -14,13 +14,25 @@ namespace Food_Rating_System
             grid.DataSourceID = "results" + Request.QueryString["category"].ToString();
             if(!IsPostBack)
             {
-                this.Master.FindControl("ddlTheme").Visible = false;
+                //this.Master.FindControl("ddlTheme").Visible = false;
             }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("Reviewer.aspx");
+        }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Theme"] != null)
+            {
+                this.Theme = Session["Theme"].ToString();
+            }
+            else if (Request.QueryString["theme"] != null && Request.QueryString["theme"].ToString() != "Choose Theme")
+            {
+                this.Theme = Request.QueryString["theme"].ToString();
+            }
         }
     }
 }
