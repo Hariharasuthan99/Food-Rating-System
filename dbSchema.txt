@@ -1,6 +1,4 @@
-﻿DB Name - FoodBase (For connection string to be same)
-
-CREATE TABLE [dbo].[Users] (
+﻿CREATE TABLE [dbo].[Users] (
     [Name]     VARCHAR (50) NOT NULL,
     [Email]    VARCHAR (50) NOT NULL,
     [Password] VARCHAR (50) NOT NULL,
@@ -19,7 +17,7 @@ CREATE TABLE [dbo].[Comments] (
     [Email]          VARCHAR (50)  NOT NULL,
     [RestaurantName] VARCHAR (50)  NOT NULL,
     [Comment]        VARCHAR (150) NULL,
-    [Rating]         FLOAT           NOT NULL,
+    [Rating]         DECIMAL(4,2)           NOT NULL,
     [Approved]       BIT           NOT NULL,
     PRIMARY KEY CLUSTERED ([Email],[RestaurantName] ASC),
     FOREIGN KEY ([Email]) REFERENCES [dbo].[Users] ([Email]),

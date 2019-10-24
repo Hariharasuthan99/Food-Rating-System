@@ -4,17 +4,17 @@
 
 <html>
 <head runat="server">
-    <title>Food Delivery System</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <title>Food Delivery System</title>
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1"  runat="server">
         <div  style="margin-left: auto; margin-right: auto; text-align: center;">
-            <asp:Label ID="Header" runat="server" Text="Food Delivery System"></asp:Label><br /><br />
+            <asp:Label ID="Header" runat="server" Text="Food Delivery System" Font-Size="X-Large"></asp:Label><br /><br />
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder><br />
-            <asp:Label ID="Footer" runat="server" Text="Copyright FRS 2019"></asp:Label><br />
+            <asp:Label ID="Footer" runat="server" Text=" © FDS 2019 <br/>All rights reserved" Font-Size="X-Large"></asp:Label><br />
         </div>
     </form>
 </body>

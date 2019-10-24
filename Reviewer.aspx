@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="Reviewer.aspx.cs" Inherits="Food_Rating_System.Reviewer" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Reviewer Page</title>
     <style type="text/css">
         .auto-style1 {
             margin-left: 0px;

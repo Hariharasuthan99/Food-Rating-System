@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Food_Rating_System.Admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Admin Page</title>
     <style type="text/css">
         .auto-style1 {
             margin-left: 3px;
@@ -111,7 +112,7 @@
     <asp:TextBox ID="tbCriteria" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="tbCriteria" Display="Dynamic" ValidationGroup="Search"></asp:RequiredFieldValidator>
     <asp:Button ID="btnDisplay" runat="server" Text="Display" OnClick="btnDisplay_Click" ValidationGroup="Search" /><br /><br />
-    <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria" ></asp:GridView><br />
+    <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria" AllowSorting="true" SortedAscendingCellStyle-ForeColor="Black" ></asp:GridView><br />
     <br />
     <asp:Label ID="Label4" runat="server"></asp:Label><br />
     <asp:Label runat="server" Text="Report"></asp:Label><br /><br />
@@ -132,7 +133,7 @@
     <asp:Label ID="ratingLabel" runat="server" Text="Rating:"></asp:Label><asp:DropDownList ID="ddlRating" runat="server" HorizontalAlign="Center"></asp:DropDownList>
     <asp:Label ID="cuisineLabel" runat="server" Text="Cuisine:"></asp:Label><asp:DropDownList ID="ddlCuisine" runat="server" HorizontalAlign="Center" DataSourceID="restCuisine" DataTextField="Cuisine"></asp:DropDownList><br /><br/>
     <asp:Button ID="btnFind" runat="server" Text="Find Restaurants" OnClick="btnFind_Click" /><br /><br />
-    <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria"></asp:GridView><br />
+    <asp:GridView ID="GridView3" runat="server" HorizontalAlign="Center" EmptyDataText="No Restaurants Match The Criteria" AllowSorting="true" SortedAscendingCellStyle-ForeColor="Black"></asp:GridView><br />
     <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /><br />
      <asp:DropDownList ID="ddlTheme" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTheme_SelectedIndexChanged"></asp:DropDownList><br />
 </asp:Content>

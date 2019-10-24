@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Food_Rating_System.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Register Page</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Table runat="server" HorizontalAlign="Center"> 

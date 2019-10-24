@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="searchResults.aspx.cs" Inherits="Food_Rating_System.searchResults" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Search Results</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SqlDataSource ID="resultsName" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>' 
@@ -31,7 +32,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <center>
-    <asp:GridView ID="grid" runat="server" EmptyDataText="No Restaurants Found" CellPadding="4" ForeColor="Black" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
+    <asp:GridView ID="grid" runat="server" EmptyDataText="No Restaurants Found" CellPadding="4" ForeColor="Black" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" AllowSorting="true" SortedAscendingCellStyle-ForeColor="Black">
         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
