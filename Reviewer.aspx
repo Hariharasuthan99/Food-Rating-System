@@ -20,10 +20,16 @@
     <asp:Label runat="server" Text="Last Searched: "></asp:Label>
     <asp:Label ID="lbPrev" runat="server" Text=""></asp:Label>
     <br /><br />
-    <asp:Label runat="server" ID="rating" Text="Reviewing" /><br />
     <asp:SqlDataSource ID="restNames" runat="server" ConnectionString='<%$ ConnectionStrings:FoodDeliveryDatabaseConnectionString %>'
         SelectCommand="SELECT [Name] FROM [Restaurants]">
     </asp:SqlDataSource>
+    <asp:Label runat="server" ID="comments" Text="Search Comments" /><br />
+    <asp:DropDownList ID="ddlComments" runat="server" ValidationGroup="Comments" DataSourceID="restNames" DataTextField="Name"></asp:DropDownList>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Choose Name" Display="Dynamic" Text="*" ForeColor="Red" ControlToValidate="ddlComments" ValidationGroup="Comments">
+    </asp:RequiredFieldValidator>
+    <asp:Button ID="btnComments" runat="server" Text="Show" OnClick="btnComments_Click" ValidationGroup="Comments" />
+    <br /><br />
+    <asp:Label runat="server" ID="rating" Text="Reviewing" /><br />
     <asp:DropDownList ID="ddlNames" runat="server" DataSourceID="restNames" DataTextField="Name" ValidationGroup="Review"></asp:DropDownList>
     <asp:RequiredFieldValidator ID="ReqName" runat="server" ErrorMessage="Choose Restaurant" Display="Dynamic" ControlToValidate="ddlNames" Text="*" ForeColor="Red" ValidationGroup="Review">
     </asp:RequiredFieldValidator>

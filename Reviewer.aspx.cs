@@ -121,5 +121,10 @@ namespace Food_Rating_System
                 this.Theme = Request.QueryString["theme"].ToString();
             }
         }
+
+        protected void btnComments_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Comments.aspx?name=" + ddlComments.SelectedValue);
+        }
     }
 }

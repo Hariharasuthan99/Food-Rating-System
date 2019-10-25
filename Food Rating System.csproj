@@ -70,6 +70,7 @@
     <Content Include="Admin.aspx" />
     <Content Include="App_Themes\Dark\dark.css" />
     <Content Include="App_Themes\Normal\normal.css" />
+    <Content Include="Comments.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Reviewer.aspx" />
     <Content Include="dbSchema.txt" />
@@ -84,6 +85,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Comments.aspx.cs">
+      <DependentUpon>Comments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comments.aspx.designer.cs">
+      <DependentUpon>Comments.aspx</DependentUpon>
     </Compile>
     <Compile Include="masterPage.Master.cs">
       <DependentUpon>masterPage.Master</DependentUpon>
